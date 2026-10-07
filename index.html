@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donde mi amor arde en silencio solo por ti</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(104, 73, 19, 0.22), transparent 34%),
+        radial-gradient(circle at 15% 75%, rgba(126, 78, 145, 0.10), transparent 30%),
+        linear-gradient(180deg, #080808 0%, #0d0b09 48%, #050505 100%);
+      color: #ead9a3;
+      font-family: "Montserrat", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Lunas suaves */
+    .moon {
+      position: fixed;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      top: -80px;
+      right: -65px;
+      background: radial-gradient(
+        circle at 35% 35%,
+        rgba(255, 241, 191, 0.28),
+        rgba(196, 156, 72, 0.08) 45%,
+        transparent 70%
+      );
+      box-shadow: 0 0 80px rgba(221, 181, 88, 0.10);
+      pointer-events: none;
+    }
+
+    /* Estrellitas */
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      color: rgba(244, 218, 145, 0.55);
+      font-size: 10px;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+
+    .star:nth-child(1) { top: 8%; left: 12%; animation-delay: .4s; }
+    .star:nth-child(2) { top: 17%; left: 79%; animation-delay: 1.2s; }
+    .star:nth-child(3) { top: 34%; left: 7%; animation-delay: 2s; }
+    .star:nth-child(4) { top: 48%; left: 91%; animation-delay: .8s; }
+    .star:nth-child(5) { top: 69%; left: 13%; animation-delay: 1.7s; }
+    .star:nth-child(6) { top: 82%; left: 86%; animation-delay: 2.4s; }
+    .star:nth-child(7) { top: 92%; left: 25%; animation-delay: 1s; }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: .25;
+        transform: scale(.8);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.25);
+      }
+    }
+
+    .container {
+      width: min(92%, 760px);
+      margin: 0 auto;
+      padding: 55px 0 70px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Encabezado */
+    .top {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .paw-line {
+      color: #d7b968;
+      font-size: 19px;
+      letter-spacing: 9px;
+      margin-bottom: 16px;
+      opacity: .82;
+    }
+
+    .date {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #9e8b60;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      margin: 0 auto;
+      max-width: 680px;
+      font-family: "Cinzel", serif;
+      font-size: clamp(25px, 6vw, 43px);
+      line-height: 1.35;
+      font-weight: 600;
+      color: #efd58d;
+      text-shadow:
+        0 0 10px rgba(231, 193, 95, .22),
+        0 0 35px rgba(231, 193, 95, .08);
+    }
+
+    .ornament {
+      margin: 23px auto 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 13px;
+      color: #c9a653;
+      font-size: 17px;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      width: 72px;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(208, 169, 80, .7),
+        transparent
+      );
+    }
+
+    /* Carta */
+    .letter {
+      position: relative;
+      padding: 39px 30px 43px;
+      border: 1px solid rgba(202, 166, 79, .32);
+      border-radius: 28px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(31, 27, 20, .88),
+          rgba(12, 11, 10, .95)
+        );
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.65),
+        inset 0 0 45px rgba(213, 172, 73, .035),
+        0 0 28px rgba(206, 167, 76, .05);
+      backdrop-filter: blur(7px);
+      overflow: hidden;
+    }
+
+    .letter::before {
+      content: "🐾";
+      position: absolute;
+      top: 20px;
+      right: 22px;
+      font-size: 22px;
+      opacity: .18;
+      transform: rotate(-15deg);
+    }
+
+    .letter::after {
+      content: "🐾";
+      position: absolute;
+      bottom: 20px;
+      left: 21px;
+      font-size: 22px;
+      opacity: .14;
+      transform: rotate(12deg);
+    }
+
+    .corner {
+      position: absolute;
+      width: 45px;
+      height: 45px;
+      border-color: rgba(216, 179, 91, .45);
+    }
+
+    .corner.tl {
+      top: 14px;
+      left: 14px;
+      border-top: 1px solid;
+      border-left: 1px solid;
+      border-radius: 12px 0 0 0;
+    }
+
+    .corner.tr {
+      top: 14px;
+      right: 14px;
+      border-top: 1px solid;
+      border-right: 1px solid;
+      border-radius: 0 12px 0 0;
+    }
+
+    .corner.bl {
+      bottom: 14px;
+      left: 14px;
+      border-bottom: 1px solid;
+      border-left: 1px solid;
+      border-radius: 0 0 0 12px;
+    }
+
+    .corner.br {
+      bottom: 14px;
+      right: 14px;
+      border-bottom: 1px solid;
+      border-right: 1px solid;
+      border-radius: 0 0 12px 0;
+    }
+
+    .nickname {
+      text-align: center;
+      font-family: "Cinzel", serif;
+      font-size: clamp(19px, 4.5vw, 27px);
+      line-height: 1.45;
+      color: #f1d995;
+      margin: 0 0 32px;
+      text-shadow: 0 0 14px rgba(235, 201, 111, .13);
+    }
+
+    .poem {
+      text-align: center;
+      font-size: 16px;
+      line-height: 2;
+      font-weight: 300;
+      color: #e8dcc0;
+      letter-spacing: .15px;
+    }
+
+    .poem p {
+      margin: 0 0 23px;
+    }
+
+    .poem .emphasis {
+      color: #f0d88f;
+      font-weight: 500;
+      text-shadow: 0 0 13px rgba(228, 190, 92, .12);
+    }
+
+    .poem .final {
+      color: #f3d98d;
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 2.05;
+    }
+
+    .heart {
+      display: block;
+      margin: 30px auto 0;
+      font-size: 28px;
+      color: #dcb75d;
+      text-shadow:
+        0 0 12px rgba(219, 180, 81, .35),
+        0 0 30px rgba(219, 180, 81, .12);
+      animation: heartbeat 2.3s infinite ease-in-out;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      15% {
+        transform: scale(1.12);
+      }
+      30% {
+        transform: scale(1);
+      }
+      45% {
+        transform: scale(1.08);
+      }
+    }
+
+    /* Huellas decorativas */
+    .paw-trail {
+      text-align: center;
+      margin: 30px 0 0;
+      color: rgba(211, 174, 84, .46);
+      font-size: 18px;
+      letter-spacing: 12px;
+    }
+
+    .signature {
+      text-align: center;
+      margin-top: 35px;
+      font-family: "Cinzel", serif;
+      color: #d9bb72;
+      font-size: 14px;
+      letter-spacing: 1px;
+      line-height: 1.8;
+    }
+
+    .signature span {
+      display: block;
+      font-family: "Montserrat", sans-serif;
+      font-size: 12px;
+      color: #a99465;
+      letter-spacing: 2px;
+      margin-top: 5px;
+    }
+
+    /* Reflejo inferior */
+    .reflection {
+      margin: 35px auto 0;
+      width: 82%;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(
+        ellipse,
+        rgba(219, 182, 91, .15),
+        transparent 68%
+      );
+      filter: blur(7px);
+      opacity: .7;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 27px;
+      color: rgba(194, 167, 108, .48);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 93%;
+        padding-top: 38px;
+      }
+
+      .letter {
+        padding: 34px 21px 38px;
+        border-radius: 23px;
+      }
+
+      .poem {
+        font-size: 15px;
+        line-height: 1.9;
+      }
+
+      .poem p {
+        margin-bottom: 21px;
+      }
+
+      .paw-line {
+        letter-spacing: 6px;
+      }
+
+      .moon {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="moon"></div>
+
+  <div class="stars">
+    <div class="star">✦</div>
+    <div class="star">✧</div>
+    <div class="star">✦</div>
+    <div class="star">✧</div>
+    <div class="star">✦</div>
+    <div class="star">✧</div>
+    <div class="star">✦</div>
+  </div>
+
+  <main class="container">
+
+    <header class="top">
+      <div class="paw-line">🐾　🐾　🐾</div>
+
+      <div class="date">
+        Miércoles · 7 de octubre de 2026
+      </div>
+
+      <h1 class="title">
+        ✦ DONDE MI AMOR ARDE EN SILENCIO SOLO POR TI ✦
+      </h1>
+
+      <div class="ornament">♡</div>
+    </header>
+
+    <section class="letter">
+
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+
+      <h2 class="nickname">
+        Mi Infinita Chispa de Mi Alma,
+      </h2>
+
+      <div class="poem">
+
+        <p>
+          Desde temprano dejé aquí un pedacito de mi corazón,<br>
+          esperando el momento en que tus ojos llegaran hasta estas palabras.
+        </p>
+
+        <p>
+          Y aunque leas esto al despertar,<br>
+          a mitad del día o cuando la noche vuelva a cubrirte,<br>
+          quiero que sientas lo mismo:
+        </p>
+
+        <p>
+          que mientras tú haces tu día,<br>
+          hay un corazón que sigue eligiéndote,<br>
+          pensándote y amándote con una intensidad<br>
+          que no sabe quedarse quieta.
+        </p>
+
+        <p>
+          Porque tú no eres solamente la mujer que amo;<br>
+          eres ese lugar donde mis sentimientos pierden el miedo,<br>
+          donde mis besos imaginan encontrarte<br>
+          y donde mi alma quisiera quedarse para siempre.
+        </p>
+
+        <p>
+          Si pudiera acercarme ahora mismo,<br>
+          te abrazaría tan fuerte que hasta el silencio entendería<br>
+          cuánto te amo.
+        </p>
+
+        <p>
+          Y te susurraría al oído,<br>
+          sin importar la hora:
+        </p>
+
+        <p class="emphasis">
+          eres mi deseo más bonito,<br>
+          mi pensamiento más constante<br>
+          y el amor que mi corazón<br>
+          elige una y otra vez.
+        </p>
+
+        <p>
+          Te amo con esa pasión que no necesita hacer ruido<br>
+          para incendiarme por dentro.
+        </p>
+
+        <p>
+          Y si hoy vuelves a preguntarte cuánto te amo,<br>
+          mira simplemente todo lo que hago<br>
+          para encontrarte incluso cuando no estás cerca.
+        </p>
+
+        <p class="final">
+          Porque desde temprano ya estabas aquí:<br>
+          en mi corazón, en mis pensamientos<br>
+          y en ese lugar de mí<br>
+          donde solamente tú sabes existir. ❤️🐾
+        </p>
+
+      </div>
+
+      <div class="heart">♥</div>
+
+      <div class="paw-trail">
+        · 🐾 · 🐾 · 🐾 ·
+      </div>
+
+      <div class="signature">
+        Con todo mi amor,<br>
+        para ti, mi princesa hermosa.
+        <span>🐈 Desde temprano, pensando en ti 🐈</span>
+      </div>
+
+    </section>
+
+    <div class="reflection"></div>
+
+    <div class="footer">
+      Una pequeña huellita de amor para ti
+    </div>
+
+  </main>
+
+</body>
+  </html>
